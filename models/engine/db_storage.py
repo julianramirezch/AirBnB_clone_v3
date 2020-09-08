@@ -98,7 +98,7 @@ class DBStorage:
         If no name is passed, returns the count of all objects in storage.
         '''
         if cls:
-            query = self.__session.query(cls).all()
+            query = self.all(cls).values()
             return len(query)
 
         return len(self.all())
