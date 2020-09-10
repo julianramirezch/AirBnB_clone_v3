@@ -50,7 +50,6 @@ def delete_user(user_id):
     ''' Delete user id object '''
     users = storage.all(User).values()
     for user in users:
-        print(user.id)
         if user.id == user_id:
             storage.delete(user)
             storage.save()
