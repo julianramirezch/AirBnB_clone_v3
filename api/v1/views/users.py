@@ -22,8 +22,6 @@ def create_user():
     if not request.json:
         return 'Not a json', 400
     json_data = request.json
-    if 'name' not in json_data:
-        return 'Missing name', 400
     if 'email' not in json_data:
         return 'Missing email', 400
     if 'password' not in json_data:
