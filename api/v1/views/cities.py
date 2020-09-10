@@ -11,13 +11,12 @@ from flask import Flask, jsonify, make_response, request, abort
                  methods=['GET'], strict_slashes=False)
 def list_cities(state_id):
     ''' Return list of all City objects'''
-    states = storage.all(State)
+    state = storage.get(State, state_id)
     res = []
     if not states:
         abort(404)
-    for state in states.values():
-        for city in state.cities:
-            res.append(city.to_dict())
+    for city in state.cities:
+        res.append(city.to_dict())
     return jsonify(res)
 
 
@@ -27,7 +26,7 @@ def create_city(state_id):
     ''' create city instance '''
     state = storage.get(State, state_id)
     if not request.json:
-        return 'Not a json', 400
+        return 'Not a JSON', 400
     json_data = request.json
     if 'name' not in json_data:
         return 'Missing name', 400
@@ -70,7 +69,7 @@ def delete_city(city_id):
 def update_city(city_id):
     ''' update city instance by id '''
     if not request.json:
-        return 'Not a json', 400
+        return 'Not a JSON', 400
     json_data = request.json
 
     city = storage.get(City, city_id)
