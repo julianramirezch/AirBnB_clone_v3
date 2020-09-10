@@ -7,7 +7,8 @@ from models.state import State
 from flask import Flask, jsonify, make_response, request, abort
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities',
+                 methods=['GET'], strict_slashes=False)
 def list_cities(state_id):
     ''' Return list of all City objects'''
     states = storage.all(State)
@@ -18,7 +19,8 @@ def list_cities(state_id):
     return jsonify(res)
 
 
-@app_views.route('/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities',
+                 methods=['POST'], strict_slashes=False)
 def create_city(state_id):
     ''' create city instance '''
     state = storage.get(State, state_id)
