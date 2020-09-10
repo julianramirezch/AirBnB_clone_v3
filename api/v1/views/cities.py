@@ -77,7 +77,7 @@ def update_city(city_id):
     if not city:
         abort(404)
 
-    dont = ['id', 'created_at', 'updadted_at']
+    dont = ['id', 'created_at', 'updated_at', 'state_id']
     for key, value in json_data.items():
         if key not in dont:
             setattr(city, key, value)
