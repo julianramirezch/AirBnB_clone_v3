@@ -13,6 +13,8 @@ def list_cities(state_id):
     ''' Return list of all City objects'''
     states = storage.all(State)
     res = []
+    if not states:
+        abort(404)
     for state in states.values():
         for city in state.cities:
             res.append(city.to_dict())
