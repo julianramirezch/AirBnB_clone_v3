@@ -31,7 +31,8 @@ def create_amenity():
     return jsonify(new_instance.to_dict()), 201
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>',
+                 methods=['GET'], strict_slashes=False)
 def get_amenity(amenity_id):
     ''' Return Amenity object '''
     amenity = storage.get(Amenity, amenity_id)
@@ -56,7 +57,8 @@ def delete_amenity(amenity_id):
         abort(404)
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>',
+                 methods=['PUT'], strict_slashes=False)
 def update_amenity(amenity_id):
     ''' update amenity instance by id '''
     if not request.json:
