@@ -11,13 +11,12 @@ from flask import Flask, jsonify, make_response, request, abort
                  methods=['GET'], strict_slashes=False)
 def list_cities(state_id):
     ''' Return list of all City objects'''
-    states = storage.all(State)
+    state = storage.get(State, state_id)
     res = []
-    if not states:
+    if not state:
         abort(404)
-    for state in states.values():
-        for city in state.cities:
-            res.append(city.to_dict())
+    for city in state.cities:
+        res.append(city.to_dict())
     return jsonify(res)
 
 
