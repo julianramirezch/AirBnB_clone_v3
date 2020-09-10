@@ -32,6 +32,5 @@ class User(BaseModel, Base):
     def __setattr__(self, name, value):
         ''' settattr custom '''
         if name == 'password':
-            m = md5()
-            value = m.update(value).digest()
+            value = md5(value.encode()).hexdigest()
         super().__setattr__(name, value)
