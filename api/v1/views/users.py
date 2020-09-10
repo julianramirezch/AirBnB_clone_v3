@@ -26,7 +26,8 @@ def create_user():
         return 'Missing name', 400
     if 'email' not in json_data:
         return 'Missing email', 400
-
+    if 'password' not in json_data:
+        return 'Missing password', 400
     new_instance = User(**json_data)
     new_instance.save()
 
