@@ -32,11 +32,19 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-            if kwargs.get("created_at", None) and type(self.created_at) is str:
+            if kwargs.get(
+                    "created_at",
+                    None) and isinstance(
+                    self.created_at,
+                    str):
                 self.created_at = datetime.strptime(kwargs["created_at"], time)
             else:
                 self.created_at = datetime.utcnow()
-            if kwargs.get("updated_at", None) and type(self.updated_at) is str:
+            if kwargs.get(
+                    "updated_at",
+                    None) and isinstance(
+                    self.updated_at,
+                    str):
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
             else:
                 self.updated_at = datetime.utcnow()
@@ -69,7 +77,7 @@ class BaseModel:
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
         if 'password' in new_dict and models.storage_t == "db":
-            del new_dict['password'] 
+            del new_dict['password']
         return new_dict
 
     def delete(self):
